@@ -2,15 +2,21 @@
 const str = document.querySelector('.field');
 const btn = document.querySelector('.btn');
 btn.addEventListener('click',()=>{
-    const strValue = str.value;
-    strValueClean = strValue.split('.');
-    strValueCleanFractionPart = strValueClean[1];
-    console.log(strValueCleanFractionPart.length);
+    var strValue = str.value;
+    var strValueClean = strValue.split('.');
     const regexp = /[^0-9 | ^\.]/mg;
     if ((typeof(strValue)) == null || strValue == '' || strValue.match(regexp) || (strValueClean.length > 2)){
         console.log('Вводите только целые числа или десятиченые дроби');
     }else{
-        let pizda = strValue;
+        let strOutput = strValue;
+        if (strValueClean.length > 1) {
+            let strValueCleanFractionPart = strValueClean[1];
+            if (strValueCleanFractionPart.length > 2) {
+                strValue = +strValue;
+                strOutput = strValue.toFixed(2);
+            }
+        }
+        let pizda = strOutput;
         console.log(pizda);
     }
 });
