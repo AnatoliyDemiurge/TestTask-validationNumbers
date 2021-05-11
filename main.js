@@ -15,8 +15,8 @@ str.addEventListener('input',()=>{
             if (strValueCleanFractionPart.length > 2) {
                 setTimeout(function(){ 
                     let arr = strValueCleanFractionPart.split('');
-                    arr.pop();
-                    let newStr = arr.join('');
+                    let removedArr = arr.splice(0,2); 
+                    let newStr = removedArr.join('');  
                     strValueCleanFractionPart = newStr;
                     strOutput = strValueCleanUnitPart + '.' + strValueCleanFractionPart;
                     str.value = strOutput;
