@@ -1,10 +1,7 @@
-//Проверка на непустой не нулл и на то что это не любой символ кроме цифры или десятичной дроби
 const str = document.querySelector('.field');
-const btn = document.querySelector('.btn');
 str.addEventListener('input',()=>{
-    var strValue = str.value;
-    console.log(typeof(strValue));
-    var strValueClean = strValue.split('.');
+    let strValue = str.value;
+    let strValueClean = strValue.split('.');
     const regexp = /[^0-9 | ^\.]/mg;
     if ((typeof(strValue)) == null || strValue == '' || strValue.match(regexp) || (strValueClean.length > 2)){
         console.log('Вводите только целые числа или десятиченые дроби');
@@ -27,21 +24,18 @@ str.addEventListener('input',()=>{
                 str.value = strOutput;
             },100)
         }
-        if (strValueClean.length > 1) {
-            if (strValueCleanFractionPart.length > 2) {
-                setTimeout(function(){ 
-                    let arr = strValueCleanFractionPart.split('');
-                    let removedArr = arr.splice(0,2); 
-                    let newStr = removedArr.join('');  
-                    strValueCleanFractionPart = newStr;
-                    strOutput = strValueCleanUnitPart + '.' + strValueCleanFractionPart;
-                    str.value = strOutput;
-                },100);
-            }
+        if (strValueClean.length > 1 && strValueCleanFractionPart.length > 2) {
+            setTimeout(function(){ 
+                let arr = strValueCleanFractionPart.split('');
+                let removedArr = arr.splice(0,2); 
+                let newStr = removedArr.join('');  
+                strValueCleanFractionPart = newStr;
+                strOutput = strValueCleanUnitPart + '.' + strValueCleanFractionPart;
+                str.value = strOutput;
+            },100);
         }
         if (str.value > maxNumber) {
-            str.value = maxNumber;
-            
+            str.value = maxNumber; 
         }
     }
 });
