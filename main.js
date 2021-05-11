@@ -1,7 +1,7 @@
 //Проверка на непустой не нулл и на то что это не любой символ кроме цифры или десятичной дроби
 const str = document.querySelector('.field');
 const btn = document.querySelector('.btn');
-btn.addEventListener('click',()=>{
+str.addEventListener('input',()=>{
     var strValue = str.value;
     var strValueClean = strValue.split('.');
     const regexp = /[^0-9 | ^\.]/mg;
@@ -10,20 +10,20 @@ btn.addEventListener('click',()=>{
     }else{
         let strOutput = strValue;
         if (strValueClean.length > 1) {
-            let strValueCleanFractionPart = strValueClean[1];
+            var strValueCleanFractionPart = strValueClean[1];
+            var strValueCleanUnitPart = strValueClean[0];
             if (strValueCleanFractionPart.length > 2) {
-                strValue = +strValue;
-                strOutput = strValue.toFixed(2);
+                setTimeout(function(){ 
+                    let arr = strValueCleanFractionPart.split('');
+                    arr.pop();
+                    let newStr = arr.join('');
+                    strValueCleanFractionPart = newStr;
+                    strOutput = strValueCleanUnitPart + '.' + strValueCleanFractionPart;
+                    str.value = strOutput;
+                },100);
             }
         }
-        let pizda = strOutput;
-        console.log(pizda);
     }
 });
 
-// btn.addEventListener('click',()=>{
-//     let strValue = str.value;
-//     strValueClean = strValue.split('.');
-//     console.log(strValueClean.length);
 
-// });
