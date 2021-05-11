@@ -8,7 +8,8 @@ str.addEventListener('input',()=>{
     if ((typeof(strValue)) == null || strValue == '' || strValue.match(regexp) || (strValueClean.length > 2)){
         console.log('Вводите только целые числа или десятиченые дроби');
     }else{
-        let strOutput = strValue;
+        let strOutput = strValue,
+            maxNumber = 201.23;
         if (strValueClean.length > 1) {
             var strValueCleanFractionPart = strValueClean[1];
             var strValueCleanUnitPart = strValueClean[0];
@@ -22,6 +23,9 @@ str.addEventListener('input',()=>{
                     str.value = strOutput;
                 },100);
             }
+        }
+        if (str.value > maxNumber) {
+            str.value = maxNumber;
         }
     }
 });
